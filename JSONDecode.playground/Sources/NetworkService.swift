@@ -1,7 +1,7 @@
 import Foundation
 
 public struct QueryResult: Decodable {
-    var cards: [Card]
+   public var cards: [Card]
 }
 
 public struct Card: Decodable {

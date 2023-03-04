@@ -4,7 +4,7 @@ public class UrlRequest {
 
     public init() {}
 
-    func getData(urlRequest: String, mapInformation: @escaping(QueryResult) -> Void ) {
+    public func getData(urlRequest: String, mapInformation: @escaping(QueryResult) -> Void ) {
         guard let urlRequest = URL(string: urlRequest) else { return }
         print("Запрос отправлен")
 
@@ -18,14 +18,14 @@ public class UrlRequest {
                 }
 
                 let json = try? JSONDecoder().decode(QueryResult.self, from: data)
-                guard json != nil else {
+                guard mapInformation(json!) != nil else {
                     return print(NetworkError.networkUnavailable.localizedDescription)
                 }
             }
         } .resume()
     }
 
-    func displayCardInfo(for cards: [Card]) {
+    public func displayCardInfo(for cards: [Card]) {
         for card in cards {
             print("Имя карты: \(card.name)")
             print("Тип карты: \(card.type)")
@@ -35,5 +35,4 @@ public class UrlRequest {
             print("Название набора: \(card.setName)")
         }
     }
-    
 }
