@@ -16,9 +16,11 @@ public class urlRequest {
                 guard let data = data else {
                     return print(NetworkError.serverError.localizedDescription)
                 }
+                let json = try? JSONDecoder().decode(QueryResult.self, from: data)
+                guard json != nil else {
+                    return print(NetworkError.networkUnavailable.localizedDescription)
+                }
                 
-                let dataAsString = String(data: data, encoding: .utf8)
-                print(dataAsString ?? "")
             }
         } .resume()
     }

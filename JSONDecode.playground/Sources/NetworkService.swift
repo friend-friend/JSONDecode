@@ -1,6 +1,6 @@
 import Foundation
 
-public struct queryResult: Decodable {
+public struct QueryResult: Decodable {
     var cards: [Card]
 }
 
